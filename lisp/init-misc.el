@@ -41,6 +41,11 @@
 
 ;; Keyboard
 (setq mac-command-modifier 'super)
+(global-set-key (kbd "<f9>") 'other-window)
+(global-set-key (kbd "<s-f1>") 'dired-at-point)
+
+;; Tramp
+(setq tramp-default-method "ssh")
 
 ;; Other
 (set-default 'indent-tabs-mode nil)
