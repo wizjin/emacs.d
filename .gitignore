@@ -24,9 +24,11 @@ Temporary Items
 ## dir
 autosave/
 backups/
-eshell/
+eshell/*
+!eshell/alias
 elpa/
-themes/
+themes/*
+!themes/tomorrow-night-paradise-theme.el
 thumbs/
 url/
 
