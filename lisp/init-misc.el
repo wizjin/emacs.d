@@ -22,12 +22,31 @@
 (recentf-mode t)
 (show-paren-mode t)
 
+;; IDO
+(ido-mode t)
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point t
+      ido-max-prospects 10)
+
+;; Backups & Autosave
 (defconst emacs-backups-dir
   (expand-file-name "backups/" user-emacs-directory))
 (defconst emacs-autosave-dir
   (expand-file-name "autosave/" user-emacs-directory))
 (setq backup-directory-alist `((".*" . ,emacs-backups-dir)))
-(setq auto-save-file-name-transforms `((".*" ,emacs-autosave-dir t)))
-(setq auto-save-list-file-prefix emacs-autosave-dir)
+(setq auto-save-file-name-transforms `((".*" ,emacs-autosave-dir t))
+      auto-save-list-file-prefix emacs-autosave-dir)
+
+;; Keyboard
+(setq mac-command-modifier 'super)
+
+;; Other
+(set-default 'indent-tabs-mode nil)
+(set-default 'indicate-empty-lines t)
+(set-default 'imenu-auto-rescan t)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(random t)
 
 (provide 'init-misc)
