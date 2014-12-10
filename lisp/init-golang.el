@@ -1,5 +1,3 @@
-;; Init Golang
-
 (require 'go-mode-load)
 (require 'go-autocomplete)
 

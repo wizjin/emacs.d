@@ -5,9 +5,9 @@ This is my emacs configuration.
 ## Requirements
 
 - Emacs 24.4 or greater.
+- Mac OSX 10.10 or greater.
 - [Evil](https://gitorious.org/evil/)
 - [Smex](https://github.com/nonsequitur/smex)
-
 
 ## Installation
 
@@ -22,5 +22,4 @@ All third-party packages will autoinstall.
 ## Updates
 
 Update the configuration file with `git pull`.
-
 
