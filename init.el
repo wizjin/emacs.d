@@ -29,6 +29,7 @@
 (require 'init-evil)
 (require 'init-auto-complete)
 (require 'init-windows)
+(require 'init-sessions)
 
 (require 'init-golang)
 (require 'init-markdown)

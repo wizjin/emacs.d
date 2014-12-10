@@ -36,6 +36,10 @@
   (setq mac-option-modifier 'meta)
   (setq mac-command-modifier 'super)
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
+  (dolist (multiple '("" "double-" "triple-"))
+    (dolist (direction '("right" "left"))
+      (global-set-key (kbd (concat "<" multiple "wheel-" direction ">"))
+                      'ignore)))
   (when (and *is-a-mac* (fboundp 'toggle-frame-fullscreen))
 	(global-set-key (kbd "s-F") 'toggle-frame-fullscreen)))
 
