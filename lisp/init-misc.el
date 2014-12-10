@@ -13,7 +13,7 @@
       transient-mark-mode t)
 
 (menu-bar-mode -1)
-(scroll-bar-mode t)
+(scroll-bar-mode -1)
 (global-linum-mode t)
 (line-number-mode t)
 (column-number-mode t)
@@ -21,14 +21,6 @@
 (auto-compression-mode t)
 (recentf-mode t)
 (show-paren-mode t)
-
-;; IDO
-(ido-mode t)
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point t
-      ido-max-prospects 10)
 
 ;; Backups & Autosave
 (defconst emacs-backups-dir
@@ -40,15 +32,29 @@
       auto-save-list-file-prefix emacs-autosave-dir)
 
 ;; Keyboard
-(setq mac-command-modifier 'super)
+(when *is-a-mac*
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'super)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
+  (dolist (multiple '("" "double-" "triple-"))
+    (dolist (direction '("right" "left"))
+      (global-set-key (kbd (concat "<" multiple "wheel-" direction ">"))
+                      'ignore)))
+  (when (and *is-a-mac* (fboundp 'toggle-frame-fullscreen))
+	(global-set-key (kbd "s-F") 'toggle-frame-fullscreen)))
+
 (global-set-key (kbd "<f9>") 'other-window)
-(global-set-key (kbd "<s-f1>") 'dired-at-point)
+(global-set-key (kbd "<s-f1>") 'find-file)
 
 ;; Tramp
 (setq tramp-default-method "ssh")
 
-;; Other
+;; Indent & Tabs
 (set-default 'indent-tabs-mode nil)
+(setq-default tab-width 4)
+(custom-set-variables '(tab-stop-list (quote (number-sequence 4 200 4))))
+
+;; Other
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
 (defalias 'yes-or-no-p 'y-or-n-p)

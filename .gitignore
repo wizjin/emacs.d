@@ -22,16 +22,24 @@ Temporary Items
 
 # Emacs Configure
 ## dir
+ac-dict/
 autosave/
 backups/
-eshell/
+eshell/*
+!eshell/alias
 elpa/
-themes/
+themes/*
+!themes/tomorrow-night-paradise-theme.el
 thumbs/
 url/
 
 ## files
-ido.last
-recentf
-tramp
+/.emacs.desktop
+/.*.lock
+/.session
+/ac-comphist.dat
+/ido.last
+/history
+/recentf
+/tramp
 

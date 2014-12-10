@@ -3,20 +3,38 @@
   (message "Your Emacs is old. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
-;; Package
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(defconst *spell-check-support-enabled* nil)
+(defconst *is-a-mac* (eq system-type 'darwin))
 
 ;; Color Theme
-(require 'tomorrow-night-paradise-theme)
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "themes" user-emacs-directory))
+(load-theme 'tomorrow-night-paradise t)
 (setq color-theme-is-global t)
 
-;; Init
+;;----------------------------------------------------------------------------
+;; Bootstrap config
+;;----------------------------------------------------------------------------
 (require 'init-misc)
-(require 'init-elpa)
+(require 'init-utils)
+(require 'init-elpa)		;; Machinery for installing required packages
+(require 'init-exec-path)	;; Set up $PATH
+
+;;----------------------------------------------------------------------------
+;; Load configs for specific features and modes
+;;----------------------------------------------------------------------------
+(require 'init-recentf)
+(require 'init-ido)
+(require 'init-evil)
+(require 'init-auto-complete)
+(require 'init-windows)
+(require 'init-sessions)
+
+(require 'init-golang)
+(require 'init-markdown)
+(require 'init-eshell)
+
+(require 'init-dash)
 
 (provide 'init)
