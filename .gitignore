@@ -22,6 +22,7 @@ Temporary Items
 
 # Emacs Configure
 ## dir
+ac-dict/
 autosave/
 backups/
 eshell/*
@@ -33,6 +34,7 @@ thumbs/
 url/
 
 ## files
+ac-comphist.dat
 ido.last
 recentf
 tramp

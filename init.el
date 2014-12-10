@@ -11,15 +11,11 @@
 (load-theme 'tomorrow-night-paradise t)
 (setq color-theme-is-global t)
 
-;; Package
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
 ;; Init
 (require 'init-misc)
 (require 'init-elpa)
 (require 'init-eshell)
+(require 'init-golang)
+;(require 'init-markdown)
 
 (provide 'init)

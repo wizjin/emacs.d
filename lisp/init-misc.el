@@ -47,6 +47,12 @@
 ;; Tramp
 (setq tramp-default-method "ssh")
 
+;; Fix PATH
+(when (file-readable-p (expand-file-name ".bash_profile"))
+    (setenv "PATH" (shell-command-to-string
+                    "source $HOME/.bash_profile && printf $PATH"))
+	(setq exec-path (split-string (getenv "PATH") ":")))
+
 ;; Other
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)

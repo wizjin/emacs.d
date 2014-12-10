@@ -5,6 +5,9 @@ This is my emacs configuration.
 ## Requirements
 
 - Emacs 24.4 or greater.
+- [Evil](https://gitorious.org/evil/)
+- [Smex](https://github.com/nonsequitur/smex)
+
 
 ## Installation
 
@@ -14,13 +17,7 @@ To install, clone this repo to `~/.emacs.d`:
 git clone https://github.com/wizjin/emacs.d.git ~/.emacs.d
 ```
 
-### Third-party
-
-To install third-party:
-
-- [Evil](https://gitorious.org/evil/)
-- [Smex](https://github.com/nonsequitur/smex)
-
+All third-party packages will autoinstall.
 
 ## Updates
 
