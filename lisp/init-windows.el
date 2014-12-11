@@ -14,8 +14,8 @@
 ;;----------------------------------------------------------------------------
 ;; Navigate window with "M-<window id>"
 ;;----------------------------------------------------------------------------
-;(require-package 'window-numbering)
-;(window-numbering-mode t)
+(require-package 'window-numbering)
+(window-numbering-mode t)
 
 ;;----------------------------------------------------------------------------
 ;; When splitting window, show (other-buffer) in the new window
@@ -71,7 +71,10 @@ Call a second time to restore the original window configuration."
     (window-configuration-to-register :sanityinc/split-window)
     (switch-to-buffer-other-window nil)))
 
-(global-set-key (kbd "<f7>") 'sanityinc/split-window)
 (global-set-key (kbd "<f6>") (lambda () (interactive) (switch-to-buffer nil)))
+(global-set-key (kbd "<f7>") 'sanityinc/split-window)
+(global-set-key (kbd "<f8>") 'winner-undo)
+(global-set-key (kbd "<M-f8>") 'winner-redo)
+
 
 (provide 'init-windows)
