@@ -7,6 +7,7 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "e" 'find-file
+  "t" 'find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer)
 

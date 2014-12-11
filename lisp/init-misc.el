@@ -1,19 +1,12 @@
 ; Init misc.
 
-(when window-system
-  (tooltip-mode -1)
-  (tool-bar-mode -1))
-
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(setq inhibit-startup-message t
-      delete-by-moving-to-trash t
+(setq delete-by-moving-to-trash t
       transient-mark-mode t)
 
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
 (global-linum-mode t)
 (line-number-mode t)
 (column-number-mode t)
@@ -39,11 +32,8 @@
   (dolist (multiple '("" "double-" "triple-"))
     (dolist (direction '("right" "left"))
       (global-set-key (kbd (concat "<" multiple "wheel-" direction ">"))
-                      'ignore)))
-  (when (and *is-a-mac* (fboundp 'toggle-frame-fullscreen))
-	(global-set-key (kbd "s-F") 'toggle-frame-fullscreen)))
+                      'ignore))))
 
-(global-set-key (kbd "<f9>") 'other-window)
 (global-set-key (kbd "<s-f1>") 'find-file)
 
 ;; Tramp
