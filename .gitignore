@@ -21,19 +21,20 @@ Temporary Items
 .apdisk
 
 # Emacs Configure
-## dir
+## Directories
 ac-dict/
 autosave/
 backups/
-eshell/*
-!eshell/alias
+docsets/
+eshell/history
+eshell/lastdir
 elpa/
 themes/*
 !themes/tomorrow-night-paradise-theme.el
 thumbs/
 url/
 
-## files
+## Files
 /.emacs.desktop
 /.*.lock
 /.session
@@ -42,4 +43,9 @@ url/
 /history
 /recentf
 /tramp
+
+## Temp
+*~
+\#*\#
+.\#*
 

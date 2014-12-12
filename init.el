@@ -24,17 +24,29 @@
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
+(require-package 'diminish)
+(require-package 'scratch)
+
+(require 'init-frame-hooks)
+(require 'init-gui-frames)
+(require 'init-dired)
+(require 'init-ibuffer)
+
 (require 'init-recentf)
 (require 'init-ido)
-(require 'init-evil)
 (require 'init-auto-complete)
 (require 'init-windows)
 (require 'init-sessions)
+(require 'init-mmm)
 
+(require 'init-editing-utils)
+(require 'init-evil)
+
+(require 'init-compile)
 (require 'init-golang)
 (require 'init-markdown)
 (require 'init-eshell)
 
-(require 'init-dash)
+;(require 'init-dash)
 
 (provide 'init)
