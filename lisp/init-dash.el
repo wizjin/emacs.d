@@ -1,20 +1,45 @@
-;; Support for the http://kapeli.com/dash documentation browser
+(require-package 'esqlite)
+(require-package 'pcvs)
+(require-package 'helm)
+(require-package 'helm-dash)
 
-(defun sanityinc/dash-installed-p ()
-  "Return t if Dash is installed on this machine, or nil otherwise."
-  (let ((lsregister "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister"))
-    (and (file-executable-p lsregister)
-         (not (string-equal
-               ""
-               (shell-command-to-string
-                (concat lsregister " -dump|grep com.kapeli.dash")))))))
+(require 'esqlite)
+(require 'pcvs)
+(require 'helm-dash)
 
-(when (and *is-a-mac* (not (package-installed-p 'dash-at-point)))
-  (message "Checking whether Dash is installed")
-  (when (sanityinc/dash-installed-p)
-    (require-package 'dash-at-point)))
+;;----------------------------------------------------------------------------
+;; Helper functions
+;;----------------------------------------------------------------------------
+(defun wizjin/dash-path (docset)
+  (if (string= docset "Emacs_Lisp")
+      (concat (concat helm-dash-docsets-path "/") "Emacs Lisp.docset")
+    (concat
+	  (concat
+		(concat
+		  (concat helm-dash-docsets-path "/")
+		  (nth 0 (split-string "_")))) ".docset")))
 
-(when (package-installed-p 'dash-at-point)
-  (global-set-key (kbd "C-c D") 'dash-at-point))
+(defun wizjin/dash-install (docset)
+  (unless (file-exists-p (wizjin/dash-path docset))
+    (helm-dash-install-docset docset)))
+
+(defun wizjin/dash-hook ()
+  (local-set-key (kbd "C-xC-df") 'helm-dash)
+  (local-set-key (kbd "C-xC-dg") 'helm-dash-at-point)
+  (local-set-key (kbd "C-xCd-dd") 'helm-dash-reset-connections))
+
+(defun wizjin/dash-hook-golang ()
+  (interactive)
+  (setq-local helm-dash-docsets '("Go")))
+
+(setq helm-dash-docsets-path (expand-file-name "docsets" user-emacs-directory))
+
+;(wizjin/dash-install "Go")
+;(wizjin/dash-install "Emacs_Lisp")
+
+(setq helm-dash-common-docsets '(Emacs_Lisp))
+(setq helm-dash-min-length 2)
+(add-hook 'prog-mode-hook 'wizjin/dash-hook)
+(add-hook 'go-mode-hook 'wizjin/dash-hook-golang)
 
 (provide 'init-dash)

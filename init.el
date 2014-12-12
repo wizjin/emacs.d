@@ -47,6 +47,6 @@
 (require 'init-markdown)
 (require 'init-eshell)
 
-(require 'init-dash)
+;(require 'init-dash)
 
 (provide 'init)

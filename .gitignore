@@ -21,10 +21,11 @@ Temporary Items
 .apdisk
 
 # Emacs Configure
-## Dir
+## Directories
 ac-dict/
 autosave/
 backups/
+docsets/
 eshell/history
 eshell/lastdir
 elpa/
