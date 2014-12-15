@@ -36,7 +36,7 @@
 
 (setq helm-dash-common-docsets '("Go" "Emacs_Lisp"))
 (setq helm-dash-min-length 2)
-(if (fboundp 'w3m) (setq helm-dash-browser-func 'w3m))
+(setq helm-dash-browser-func 'w3m)
 (add-hook 'prog-mode-hook 'wizjin/dash-hook)
 (add-hook 'go-mode-hook 'wizjin/dash-hook-golang)
 

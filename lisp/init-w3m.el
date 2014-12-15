@@ -3,6 +3,7 @@
 (require 'w3m)
 
 (setq w3m-home-page "http://emacs-w3m.namazu.org/info/"
+      w3m-session-load-crashed-sessions t
       w3m-coding-system 'utf-8
       w3m-file-coding-system 'utf-8
       w3m-file-name-coding-system 'utf-8
