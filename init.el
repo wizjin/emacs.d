@@ -41,12 +41,13 @@
 
 (require 'init-editing-utils)
 (require 'init-evil)
+(require 'init-w3m)
 
 (require 'init-compile)
 (require 'init-golang)
 (require 'init-markdown)
 (require 'init-eshell)
 
-;(require 'init-dash)
+(require 'init-dash)
 
 (provide 'init)

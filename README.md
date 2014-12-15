@@ -11,10 +11,16 @@ This is my emacs configuration.
 
 ## Installation
 
+To install w3m:
+
+```bash
+$ brew install w3m
+```
+
 To install, clone this repo to `~/.emacs.d`:
 
 ```bash
-git clone https://github.com/wizjin/emacs.d.git ~/.emacs.d
+$ git clone https://github.com/wizjin/emacs.d.git ~/.emacs.d
 ```
 
 All third-party packages will autoinstall.
