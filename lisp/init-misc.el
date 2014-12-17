@@ -42,6 +42,7 @@
 ;; Indent & Tabs
 (set-default 'indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq show-trailing-whitespace t)
 (custom-set-variables '(tab-stop-list (quote (number-sequence 4 200 4))))
 
 ;; Other
