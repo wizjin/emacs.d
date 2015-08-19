@@ -1,3 +1,4 @@
 alias clear eshell/clear
 alias ll ls -l $*
 alias la ls -a $*
+alias ssh cd /ssh:$1:~

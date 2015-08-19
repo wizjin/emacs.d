@@ -2,6 +2,9 @@
 (when (version<= emacs-version "24")
   (message "Your Emacs is old. Please upgrade if possible."))
 
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+    (normal-top-level-add-subdirs-to-load-path))
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (defconst *spell-check-support-enabled* nil)
@@ -48,6 +51,6 @@
 (require 'init-markdown)
 (require 'init-eshell)
 
-(require 'init-dash)
+;;(require 'init-dash)
 
 (provide 'init)
