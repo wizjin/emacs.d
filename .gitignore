@@ -23,7 +23,6 @@ Temporary Items
 # Emacs Configure
 ## Directories
 ac-dict/
-autosave/
 backups/
 docsets/
 eshell/history
@@ -39,6 +38,8 @@ url/
 ## Files
 /.emacs.desktop
 /.*.lock
+/auto-save-list
+/network-security.data
 /.session
 /session.*
 /custom.el
@@ -48,6 +49,7 @@ url/
 /recentf
 /smex-items
 /tramp
+/.historian
 
 ## Temp
 *~

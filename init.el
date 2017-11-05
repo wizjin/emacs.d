@@ -36,7 +36,39 @@
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
+
+(require-package 'wgrep)
+(require-package 'project-local-variables)
+(require-package 'diminish)
+(require-package 'scratch)
+(require-package 'command-log-mode)
+
+(require 'init-frame-hooks)
+(require 'init-xterm)
 (require 'init-themes)
+(require 'init-osx-keys)
+(require 'init-gui-frames)
+(require 'init-dired)
+(require 'init-isearch)
+(require 'init-grep)
+(require 'init-uniquify)
+(require 'init-ibuffer)
+(require 'init-flycheck)
+
+(require 'init-recentf)
+(require 'init-smex)
+(require 'init-ivy)
+(require 'init-hippie-expand)
+(require 'init-company)
+(require 'init-windows)
+(require 'init-sessions)
+(require 'init-fonts)
+(require 'init-mmm)
+
+(require 'init-editing-utils)
+(require 'init-whitespace)
+
+
 
 
 (provide 'init)
