@@ -28,7 +28,9 @@ backups/
 docsets/
 eshell/history
 eshell/lastdir
-elpa/
+/elpa
+/elpa-*
+site-lisp/package/
 themes/*
 !themes/tomorrow-night-paradise-theme.el
 thumbs/
@@ -38,6 +40,8 @@ url/
 /.emacs.desktop
 /.*.lock
 /.session
+/session.*
+/custom.el
 /ac-comphist.dat
 /ido.last
 /history
