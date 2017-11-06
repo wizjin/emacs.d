@@ -85,7 +85,7 @@
 (require 'init-docker)
 (maybe-require-package 'terraform-mode)
 
-
+(require 'init-paredit)
 (require 'init-lisp)
 (require 'init-common-lisp)
 
@@ -96,6 +96,15 @@
 (when *is-a-mac*
   (require-package 'osx-location))
 (maybe-require-package 'regex-tool)
+
+
+;;----------------------------------------------------------------------------
+;; Allow access from emacsclient
+;;----------------------------------------------------------------------------
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
