@@ -23,12 +23,13 @@ Temporary Items
 # Emacs Configure
 ## Directories
 ac-dict/
-autosave/
 backups/
 docsets/
 eshell/history
 eshell/lastdir
-elpa/
+/elpa
+/elpa-*
+site-lisp/package/
 themes/*
 !themes/tomorrow-night-paradise-theme.el
 thumbs/
@@ -37,13 +38,19 @@ url/
 ## Files
 /.emacs.desktop
 /.*.lock
+/auto-save-list
+/network-security.data
 /.session
+/session.*
+/custom.el
 /ac-comphist.dat
 /ido.last
 /history
 /recentf
 /smex-items
 /tramp
+/.historian
+/.smex-items
 
 ## Temp
 *~

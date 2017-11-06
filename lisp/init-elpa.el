@@ -1,34 +1,63 @@
 (require 'package)
 
-;; Standard package repositories
-;(add-to-list 'package-archives
-;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+(let ((local-package-el (locate-library "package")))
+  (when (string-match-p (concat "^" (regexp-quote user-emacs-directory))
+                        local-package-el)
+    (warn "Please remove the local package.el, which is no longer supported (%s)"
+          local-package-el)))
+
+;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
+(let ((versioned-package-dir
+       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                         user-emacs-directory)))
+  (when (file-directory-p package-user-dir)
+    (message "Default package locations have changed in this config: renaming old package dir %s to %s."
+             package-user-dir
+             versioned-package-dir)
+    (rename-file package-user-dir versioned-package-dir))
+  (setq package-user-dir versioned-package-dir))
+
+;;; Standard package repositories
+
+;; We include the org repository for completeness, but don't normally
+;; use it.
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+
+
+(defconst sanityinc/no-ssl (and (memq system-type '(windows-nt ms-dos))
+                                (not (gnutls-available-p))))
+
+;;; Also use Melpa for most packages
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/"))
+             `("melpa" . ,(if sanityinc/no-ssl
+                              "http://melpa.org/packages/"
+                            "https://melpa.org/packages/")))
 
-;; If gpg cannot be found, signature checking will fail, so we
-;; conditionally enable it according to whether gpg is available. We
-;; re-run this check once $PATH has been configured
-(defun sanityinc/package-maybe-enable-signatures ()
-  (setq package-check-signature
-        (when (executable-find "gpg") 'allow-unsigned)))
+(unless sanityinc/no-ssl
+  ;; Force SSL for GNU ELPA
+  (setcdr (assoc "gnu" package-archives) "https://elpa.gnu.org/packages/"))
 
-(sanityinc/package-maybe-enable-signatures)
-(after-load 'init-exec-path
-            (sanityinc/package-maybe-enable-signatures))
+;; NOTE: In case of MELPA problems, the official mirror URL is
+;; https://www.mirrorservice.org/sites/stable.melpa.org/packages/
 
-;; On-demand installation of packages
+;;; On-demand installation of packages
+
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
 re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version) t
+  (if (package-installed-p package min-version)
+      t
     (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
+        (if (boundp 'package-selected-packages)
+            ;; Record this as a package the user installed explicitly
+            (package-install package nil)
+          (package-install package))
       (progn
         (package-refresh-contents)
         (require-package package min-version t)))))
+
 
 (defun maybe-require-package (package &optional min-version no-refresh)
   "Try to install PACKAGE, and return non-nil if successful.
@@ -38,11 +67,15 @@ available package lists will not be re-downloaded in order to
 locate PACKAGE."
   (condition-case err
       (require-package package min-version no-refresh)
-    (error (message "Couldn't install package `%s': %S" package err) nil)))
+    (error
+     (message "Couldn't install optional package `%s': %S" package err)
+     nil)))
 
-;; Fire up package.el
+;;; Fire up package.el
+
 (setq package-enable-at-startup nil)
 (package-initialize)
+
 
 (require-package 'fullframe)
 (fullframe list-packages quit-window)
@@ -52,19 +85,19 @@ locate PACKAGE."
 
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
   "Set any column with name COL-NAME to the given WIDTH."
-  (cl-loop for column across tabulated-list-format
-           when (string= col-name (car column))
-           do (setf (elt column 1) width)))
+  (when (> width (length col-name))
+    (cl-loop for column across tabulated-list-format
+             when (string= col-name (car column))
+             do (setf (elt column 1) width))))
 
 (defun sanityinc/maybe-widen-package-menu-columns ()
   "Widen some columns of the package menu table to avoid truncation."
   (when (boundp 'tabulated-list-format)
     (sanityinc/set-tabulated-list-column-width "Version" 13)
-    (let ((longest-archive-name
-           (apply 'max (mapcar 'length (mapcar 'car package-archives)))))
-      (sanityinc/set-tabulated-list-column-width "Archive"
-                                                 longest-archive-name))))
+    (let ((longest-archive-name (apply 'max (mapcar 'length (mapcar 'car package-archives)))))
+      (sanityinc/set-tabulated-list-column-width "Archive" longest-archive-name))))
 
 (add-hook 'package-menu-mode-hook 'sanityinc/maybe-widen-package-menu-columns)
+
 
 (provide 'init-elpa)
