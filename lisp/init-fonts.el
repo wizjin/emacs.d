@@ -15,6 +15,10 @@ This is helpful for writeroom-mode, in particular."
 (add-hook 'visual-fill-column-mode-hook
           'sanityinc/maybe-adjust-visual-fill-column)
 
+(when *is-a-mac*
+  (set-face-attribute 'default nil :family "Source Code Pro")
+  (set-face-attribute 'default nil :height 130)
+  )
 
 
 (provide 'init-fonts)

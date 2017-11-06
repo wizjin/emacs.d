@@ -65,7 +65,7 @@
 (require 'init-fonts)
 (require 'init-mmm)
 
-(require 'init-editing-utils)
+;(require 'init-editing-utils)
 (require 'init-whitespace)
 
 

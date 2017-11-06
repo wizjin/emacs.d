@@ -1,7 +1,7 @@
-(require-package 'dracula-theme)
-(load-theme 'dracula t)
-
-;(require-package 'atom-one-dark-theme)
-;(load-theme 'atom-one-dark t)
+;; Themes
+;; dracula-theme/dracula
+;; atom-one-dark-theme/atom-one-dark
+(require-package 'color-theme-sanityinc-tomorrow)
+(load-theme 'sanityinc-tomorrow-bright t)
 
 (provide 'init-themes)
